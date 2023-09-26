@@ -1,4 +1,4 @@
-defmodule Greeter.Worker do
+defmodule Greeter.Greet do
   use GenServer
 
   def start_link(opts) do
