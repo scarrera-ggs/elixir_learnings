@@ -1,6 +1,6 @@
 import Config
 
 config :configs_app,
-  names: ["address1", "address2"]
+  names: ["name1", "name2"]
 
-import_config "#{config_env()}.exs"
+# import_config "#{config_env()}.exs"
