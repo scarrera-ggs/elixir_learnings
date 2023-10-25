@@ -6,13 +6,16 @@ defmodule GenstageExample.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: GenstageExample.Worker.start_link(arg)
-      # {GenstageExample.Worker, arg}
+      {GenstageExample.Producer, 0},
+      {GenstageExample.ProducerConsumer, []},
+      {GenstageExample.Consumer, []}
+
+      # multiple consumers
+      # Supervisor.child_spec({GenstageExample.Consumer, []}, id: :c1),
+      # Supervisor.child_spec({GenstageExample.Consumer, []}, id: :c2)
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: GenstageExample.Supervisor]
+    opts = [strategy: :rest_for_one, name: GenstageExample.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
